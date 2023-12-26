@@ -1,11 +1,11 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget
+from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow, QLabel
 
 from message import Ui_Form as UI_Message
-from main_window import Ui_Form as UI_Main
+from main_window import Ui_MainWindow as UI_Main
 
 
-class Message(QWidget):
+class Message(QMainWindow):
     def __init__(self, text):
         super().__init__()
 
@@ -17,7 +17,7 @@ class Message(QWidget):
         # self.ui_message.lbl_message.setText(self.text)
 
 
-class Chatter(QWidget):
+class Chatter(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -28,17 +28,14 @@ class Chatter(QWidget):
         self.ui_main.btn_send.clicked.connect(self.send_message)
 
     def send_message(self):
-        print('Message send')
-        message = Message('New message widget')
-        # message.show()
-
-        # message_item = QLabel(self.ui.sa_message_list_content)
-        # message_item.setText('New message')
-
-        self.ui_main.vl_message_list.addWidget(message)
-        # message_item.show()
-        # QScrollArea()
-        # self.ui.message_list.
+        # print(type(self.ui_main.sa_messages.children()))
+        # print(type(self.ui_main.vl_message_list.children()))
+        for item in self.ui_main.sa_messages.children():
+        # for item in self.ui_main.vl_message_list.children():
+            print(item.objectName())
+        # message = Message('New message widget')
+        # message = QLabel(self.ui_main)
+        # self.ui_main.vl_message_list.addWidget(message)
 
 
 if __name__ == '__main__':
